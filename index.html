@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch Together</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="watch videos together">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='54' dominant-baseline='middle' text-anchor='middle'%3Eꙮ%3C/text%3E%3C/svg%3E" />
+    <style>
+    :root {
+        @media (prefers-color-scheme: light) {
+            --fg-color: black;
+            --bg-color: white;
+        }
+        @media (prefers-color-scheme: dark) {
+            --fg-color: white;
+            --bg-color: black;
+        }
+    }
+
+    body {
+        background: var(--bg-color);
+        margin: 0;
+        display: flex;
+    }
+
+    #video {
+        align-self: center;
+        aspect-ratio: 16/9 auto;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    #sidebar {
+        float: right;
+        display: grid;
+        grid-auto-columns: min-content; 
+        grid-template-rows: min-content auto;
+        height: 100vh;
+        border-left: 1px solid;
+        justify-content: space-evenly;
+    }
+
+    .tabs_radio {
+        display: none;
+    }
+
+    .tabs_label {
+        padding: 8px;
+        cursor: pointer;
+        grid-row: 1;
+    }
+
+    .tabs_content {
+        display: none;
+        margin: 8px;
+        grid-area: 2 / span 5;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .tabs_radio:checked+.tabs_label {
+        color: var(--bg-color);
+        background: var(--fg-color);
+    }
+
+    .tabs_radio:checked+.tabs_label+.tabs_content {
+        display: flex;
+    }
+    
+    #chat_content {
+        margin: 0px;
+    }
+    
+    #chat_messages {
+        overflow-wrap: break-word;
+        overflow-y: scroll;
+    }
+
+    #chat_messages > p {
+        margin: 8px;
+    }
+
+    #message_box {
+        margin: 8px;
+        max-width: 100%;
+        border: 1px solid;
+        border-radius: 8px;
+        padding: 8px;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        overflow: scroll;
+    }
+
+    </style>
+</head>
+<body>
+    <video id="video" controls>
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+    </video>
+    <div id="sidebar">
+        <input class="tabs_radio" id="chat_tab" type="radio" name="tabs">
+        <label for="chat_tab" class="tabs_label" tabindex="0">Chat</label>
+        <div class="tabs_content" id="chat_content">
+            <div id="chat_messages">
+                <p>alice: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>bob: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>alice: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p>alice: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div id="message_box" role="textbox" spellcheck="true" contenteditable></div>
+        </div>
+   
+        <input class="tabs_radio" id="proposals_tab" type="radio" name="tabs">
+        <label for="proposals_tab" class="tabs_label" tabindex="1">Proposals</label>
+        <div class="tabs_content" id="proposals_content">PROPOSALS CONTENT</div>
+       
+        <input class="tabs_radio" id="library_tab" type="radio" name="tabs">
+        <label for="library_tab" class="tabs_label" tabindex="2">Library</label>
+        <div class="tabs_content" id="library_content">LIBRARY CONTENT</div>
+   
+        <input class="tabs_radio" id="network_tab" type="radio" name="tabs" checked>
+        <label for="network_tab" class="tabs_label">Network</label>
+        <div class="tabs_content" id="network_content" tabindex="3">NETWORK CONTENT</div>
+   
+        <input class="tabs_radio" id="settings_tab" type="radio" name="tabs">
+        <label for="settings_tab" class="tabs_label" tabindex="4">Settings</label>
+        <div class="tabs_content" id="settings_content">SETTINGS CONTENT</div>
+    </div>
+</body>
+</html>
